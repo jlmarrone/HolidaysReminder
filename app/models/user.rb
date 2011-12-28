@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   
   scope :date_notification, lambda{|f| joins(:holidays).where("holidays.holiday_date < ?", f + 2.weeks).group("users.id")}
 
+  after_create :registration_email
+
   def self.authenticate(email, password)
     user = find_by_email_and_password(email,password)
     if user && user.password == password
@@ -29,5 +31,7 @@ class User < ActiveRecord::Base
    update_attribute(:updated_at, Time.now)
   end  
 
-
+  def registration_email
+    UserMailer.registration_confirmation(self).deliver
+  end
 end

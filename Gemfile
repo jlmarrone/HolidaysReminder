@@ -13,6 +13,8 @@ gem 'formtastic','~>1.2.0'
 
 gem "mail", "2.3.0"
 
+gem 'inherited_resources'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
