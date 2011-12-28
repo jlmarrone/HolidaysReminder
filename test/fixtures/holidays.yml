@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  description: MyString
+  holiday_date: 2011-12-21 15:32:56
+
+two:
+  description: MyString
+  holiday_date: 2011-12-21 15:32:56

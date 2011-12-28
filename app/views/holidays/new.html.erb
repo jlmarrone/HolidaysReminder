@@ -1,0 +1,7 @@
+<header>
+ <p>New Holiday for: <%= @holiday.user.name %></p>
+</header>
+
+<%= render :partial => 'form' %>
+
+<%= link_to "Back", user_path(@holiday.user) %>

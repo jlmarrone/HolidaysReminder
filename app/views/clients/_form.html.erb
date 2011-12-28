@@ -1,0 +1,9 @@
+<%= semantic_form_for [@client.user, @client] do |form| %>
+  <%= form.inputs "Client" do%>
+  <%= form.input :name %>
+  <%= form.input :email %>
+  <%= form.input :country,:prompt => "Select Your Country", :collection => Country.all.map{|c| [c.Country_Name,c.id]} %>
+  
+  <% end %> 
+  <%= form.buttons %>
+<% end %>

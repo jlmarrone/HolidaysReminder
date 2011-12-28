@@ -1,0 +1,8 @@
+<%= @client.name %>,
+
+New Holidays are Coming up!
+
+
+<% @holidays.each do |holiday| %>
+Holiday: <%= holiday.description %>, Date: <%= holiday.holiday_date %>
+<% end %>

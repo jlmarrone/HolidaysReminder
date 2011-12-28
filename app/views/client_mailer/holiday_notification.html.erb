@@ -1,0 +1,10 @@
+<p><%= @client.name %>,</p>
+
+<p>New Holidays are Coming up!</p>
+
+<ul>
+<% @holidays.each do |holiday| %>
+<li>Holiday: <%= holiday.description %>, Date: <%= holiday.holiday_date %></li>
+<% end %>
+</ul>
+

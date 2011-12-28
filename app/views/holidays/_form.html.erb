@@ -1,0 +1,10 @@
+<%= semantic_form_for [@holiday.user, @holiday] do |form| %>
+  <%= form.inputs "Holiday" do%>
+  <%= form.input :description %>
+  <%= form.input :holiday_date ,
+         :prompt => {:day => "Day", :month => "Month", :year => "Year"},
+         :start_year => Time.now.year %>
+  <%= form.input :country, :collection => Country.all.map{|c| [c.Country_Name,c.id]} %>
+  <% end %> 
+  <%= form.buttons %>
+<% end %>
