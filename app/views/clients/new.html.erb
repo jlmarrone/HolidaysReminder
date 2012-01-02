@@ -1,7 +1,8 @@
 <header>
- <p>New Client for: <%= @client.user.name %></p>
+  <p>New Client for: <%= current_user.email%></p>
 </header>
 
 <%= render :partial => 'form' %>
 
-<%= link_to "Back", user_path(@client.user) %>
+<%= link_to "Back", select_home_path(current_user) %>
+

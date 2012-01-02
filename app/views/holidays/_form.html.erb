@@ -1,10 +1,35 @@
-<%= semantic_form_for [@holiday.user, @holiday] do |form| %>
-  <%= form.inputs "Holiday" do%>
-  <%= form.input :description %>
-  <%= form.input :holiday_date ,
-         :prompt => {:day => "Day", :month => "Month", :year => "Year"},
-         :start_year => Time.now.year %>
-  <%= form.input :country, :collection => Country.all.map{|c| [c.Country_Name,c.id]} %>
-  <% end %> 
-  <%= form.buttons %>
+<%= form_for [@holiday] do |form| %>
+<% if @holiday.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@holiday.errors.count, "error") %> prohibited this Holiday from being saved:</h2>
+
+      <ul>
+      <% @holiday.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :holiday_date %>
+    <%= form.date_select('holiday_date', :order => [:day, :month, :year]) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_id %>
+    <%= form.select :country_id, Country.all.collect{ |c| [c.Country_Name, c.id] }, :prompt => "Select a Country" %>
+  </div>
+
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  
 <% end %>

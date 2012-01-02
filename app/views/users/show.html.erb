@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>User Name: <%= @user.name %></b>
+  <b>User Name: <%= current_user.name %></b>
   <p><%= link_to 'Edit User', edit_user_path(@user) %>
   <%= link_to 'Add a new Client', new_user_client_path(@user) %>
   <%= link_to 'Add a new Holiday', new_user_holiday_path(@user) %>

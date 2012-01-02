@@ -1,7 +1,7 @@
 <div class="client">
- <p>Name: <%= client.name%> </br>Email: <%= client.email %></br>
- <%= link_to "Edit", edit_user_client_path(client.user, client) %> 
- <%= link_to "Destroy", user_client_path(client.user, client), :confirm => "Do you want to delete '#{client.name}'?", :method => :delete %>
+<p>Name: <%= client.name%> </br>Email: <%= client.email %></br> 
+ <%= link_to "Edit", edit_client_path(client.id) %> 
+ <%= link_to "Destroy", client_path(client.id), :confirm => "Do you want to delete '#{client.name}'?", :method => :delete %>
  </p>
 
 </div>

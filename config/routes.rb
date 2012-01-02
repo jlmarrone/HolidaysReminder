@@ -1,22 +1,43 @@
 Holidaysreminder::Application.routes.draw do
+ 
 
-  get "log_out" => "sessions#destroy", :as =>"log_out"
-  get "log_in" => "sessions#new", :as =>"log_in"
+  devise_for :users do  
+    
+    resources :clients
+    resources :holidays
+    root :to => "home#index"
+  end
 
-  get "home/index"
+  
+
+  #get "home/index"
   
   root :to => "home#index"
   
-  resources :users do
-    resources :clients 
-    resources :holidays
+  
+  resources :home do
+    member do 
+      get 'select'
+    end
 
     member do 
       post 'delivering'
     end
   end
+
+  #resources :clients
+  #resources :holidays
+
+  # resources :users do
+  #   resources :clients 
+  #   resources :holidays
+
+  #   member do 
+  #     post 'delivering'
+  #   end
+  # end
   
-  resources :sessions
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

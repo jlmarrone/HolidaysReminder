@@ -6,7 +6,7 @@ task :send_mailing => :environment do
     holidays = user.holidays.date_notification(@today)
   
     user.clients.each do |client|
-      holiday_notify = ClientNotification.where(:client_id => client.id).where(:holiday_id => holidays.map(&:id)).all.map(&:id)
+      holiday_notify = client.client_notifications.where(:holiday_id => holidays.map(&:id)).all.map(&:holiday_id)
       holidays_to_mail = holidays.select{|current_holiday| !holiday_notify.include?(current_holiday.id)}    
 
 

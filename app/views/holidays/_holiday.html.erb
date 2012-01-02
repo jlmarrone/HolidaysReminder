@@ -1,7 +1,7 @@
 <div class="holiday">
  <p>Description: <%= holiday.description%> </br>Date: <%= holiday.holiday_date %></br>
- <%= link_to "Edit", edit_user_holiday_path(holiday.user, holiday) %> 
- <%= link_to "Destroy", user_holiday_path(holiday.user, holiday), :confirm => "Do you want to delete '#{holiday.description}'?", :method => :delete %>
+ <%= link_to "Edit", edit_holiday_path(holiday.id) %> 
+ <%= link_to "Destroy", holiday_path(holiday.id), :confirm => "Do you want to delete '#{holiday.description}'?", :method => :delete %>
  </p>
 
 </div>

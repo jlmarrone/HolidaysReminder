@@ -1,9 +1,33 @@
-<%= semantic_form_for [@client.user, @client] do |form| %>
-  <%= form.inputs "Client" do%>
-  <%= form.input :name %>
-  <%= form.input :email %>
-  <%= form.input :country,:prompt => "Select Your Country", :collection => Country.all.map{|c| [c.Country_Name,c.id]} %>
+<%= form_for [@client] do |form| %>
+<% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this Client from being saved:</h2>
+
+      <ul>
+      <% @client.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
   
-  <% end %> 
-  <%= form.buttons %>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :country_id %>
+    <%= form.select :country_id, Country.all.collect{ |c| [c.Country_Name, c.id] }, :prompt => "Select a Country" %>
+  </div>
+
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
