@@ -1,0 +1,43 @@
+
+</br>
+Select what you want to do: <%= link_to 'Add a new Client', new_client_path %> |
+<%= link_to 'Add a new Holiday', new_holiday_path %> |
+<%= link_to 'Holidays Notification', delivering_home_path(current_user), :confirm => 'Are you sure?', :method => :post %></br>
+
+
+<p>Clients</p>
+<table border cellpadding=5>
+  <tr bgcolor=red align=center>
+    <th>Name</th>
+    <th>Email</th>
+    
+    <th></th>
+  </tr>
+ 
+<% current_user.clients.each do |client| %>
+  <tr>
+    <td><%= client.name %></td>
+    <td><%= client.email %></td>
+    <td><%= link_to "Edit", edit_client_path(client.id) %> |
+    <%= link_to "Destroy", client_path(client.id), :confirm => "Do you want to delete '#{client.name}'?", :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>Holidays</p>
+<table border cellpadding=5>
+  <tr bgcolor=red align=center>
+    <th>Description</th>
+    <th>Date</th>
+    <th></th>
+  </tr>
+ 
+<% current_user.holidays.each do |holiday| %>
+  <tr>
+    <td><%= holiday.description %></td>
+    <td><%= holiday.holiday_date %></td>
+    <td><%= link_to "Edit", edit_holiday_path(holiday.id) %> |
+   <%= link_to "Destroy", holiday_path(holiday.id), :confirm => "Do you want to delete '#{holiday.description}'?", :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

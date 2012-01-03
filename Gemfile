@@ -5,7 +5,6 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
 
 gem 'json'
 
@@ -20,6 +19,14 @@ gem 'devise'
 gem "paperclip", "~> 2.0"
 
 gem 'aws-s3'
+
+group :test, :development do
+ gem 'mysql'
+end
+
+group :staging do
+ gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
