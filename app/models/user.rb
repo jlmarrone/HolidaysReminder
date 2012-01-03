@@ -4,9 +4,15 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :holidays
   has_many :clients, :dependent => :destroy
   accepts_nested_attributes_for :clients
-  
+
   belongs_to :country
   belongs_to :state
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  #  :storage => :s3,
+  #  :s3_credentials => "/Users/admin/holidaysreminder/config/s3.yml",
+  #  :path => ":attachment/:id/:style.:extension",
+  #  :bucket => 'holidaysreminder'
   
   scope :date_notification, lambda{|f| joins(:holidays).where("holidays.holiday_date < ?", f + 2.weeks).group("users.id")}
 
@@ -16,5 +22,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation,
+  :avatar,:country_id,:state_id
 end

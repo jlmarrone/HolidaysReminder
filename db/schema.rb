@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111230165849) do
+ActiveRecord::Schema.define(:version => 20120102192746) do
 
   create_table "client_holidays", :force => true do |t|
     t.integer  "client_id"
@@ -89,6 +89,10 @@ ActiveRecord::Schema.define(:version => 20111230165849) do
     t.string   "name"
     t.integer  "country_id"
     t.integer  "state_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

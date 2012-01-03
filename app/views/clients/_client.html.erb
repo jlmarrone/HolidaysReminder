@@ -1,7 +1,8 @@
 <div class="client">
-<p>Name: <%= client.name%> </br>Email: <%= client.email %></br> 
+ <p>Name: <%= client.name%> </br>Email: <%= client.email %></br> 
  <%= link_to "Edit", edit_client_path(client.id) %> 
  <%= link_to "Destroy", client_path(client.id), :confirm => "Do you want to delete '#{client.name}'?", :method => :delete %>
  </p>
 
 </div>
+
