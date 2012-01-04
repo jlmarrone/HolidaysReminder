@@ -20,6 +20,10 @@ gem "paperclip", "~> 2.0"
 
 gem 'aws-s3'
 
+gem 'execjs'
+
+gem 'therubyracer'
+
 group :test, :development do
  gem 'mysql'
 end
