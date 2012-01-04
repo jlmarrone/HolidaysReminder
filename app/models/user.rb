@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   #  :path => ":attachment/:id/:style.:extension",
   #  :bucket => 'holidaysreminder'
   
-  scope :date_notification, lambda{|f| joins(:holidays).where("holidays.holiday_date < ?", f + 2.weeks).group("users.id")}
+  #scope :date_notification, inclue(:holidays).where("holidays.holiday_date < ?", f + 2.weeks).group("users.id")}
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable

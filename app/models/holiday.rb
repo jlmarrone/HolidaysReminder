@@ -9,5 +9,5 @@ class Holiday < ActiveRecord::Base
   
   validates :description, :holiday_date , :presence => true
 
-  scope :date_notification, lambda{|f| where("holiday_date < ?",f + 2.weeks)}
+  scope :date_notification, where("holiday_date < ?",Date.today + 2.weeks)
 end

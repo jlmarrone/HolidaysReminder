@@ -12,7 +12,7 @@ class Client < ActiveRecord::Base
   validates :name,  :uniqueness => true
   validates :email, :name, :presence => true
 
-  scope :notified_clients,(where :notified => :false)
+  scope :notified_clients, where(:notified => false)
   
 
   protected
