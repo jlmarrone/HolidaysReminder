@@ -2,11 +2,11 @@
    <h2>Sign in</h2>
    <div class="content login">
       <div class="flash">
-        <% flash.each do |type, message| -%>
+        <% flash.each do |type, message| %>
           <div class="message <%= type %>">
             <p><%= message %></p>
           </div>
-        <% end -%>
+        <% end %>
       </div>
 
      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form login" }) do |f| %>
