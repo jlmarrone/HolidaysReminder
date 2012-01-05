@@ -1,42 +1,108 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="block" id="block-edit">
+   <h2>Edit Profile</h2>
+   <div class="content">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form",:multipart=> true }) do |f| %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f| %>
-  <%= devise_error_messages! %>
+        <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :name %></label>
+         </div>
+         <div class="right">
+            <%= f.text_field :name %>
+         </div>
+       </div>  
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :email %></label>
+         </div>
+         <div class="right">
+            <%= f.text_field :email %>
+         </div>
+       </div>  
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :password %></label>
+         </div> 
+         <div class="right">
+            <%= f.password_field :password %></br>(leave blank if you don't want to change it)
+         </div>
+       </div>    
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></div>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :password_confirmation %></label>
+         </div> 
+         <div class="right">
+            <%= f.password_field :password_confirmation %></br>(leave blank if you don't want to change it)
+         </div>
+       </div>   
+       
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :current_password %></label>
+         </div> 
+         <div class="right">
+            <%= f.password_field :current_password %></br>(we need your current password to confirm your changes)
+         </div>
+       </div>     
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :country_id %></label>
+         </div> 
+         <div class="right">
+            <%= f.select :country_id, Country.all.collect{ |c| [c.Country_Name, c.id] }, :prompt => "Select a Country" %>
+         </div>
+       </div>    
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :state_id %></label>
+         </div> 
+         <div class="right">
+            <%= f.select :state_id, State.all.collect{ |s| [s.State_Name, s.id] }, :prompt => "Select a State" %>
+         </div>
+       </div> 
 
-  <div>
-  <label for="user_country_id">Country:</label>
-  <%= f.collection_select :country_id, Country.find(:all), :id, :Country_Name, :prompt => "Select a Country" %>
+       <div class="group wat-cf">
+         <div class="left">
+             <label class="label right">User's Profile Image</label>
+         </div>
+         <div class="right">
+            <%= image_tag current_user.avatar.url(:thumb) %>
+         </div>
+       </div> 
+
+       <div class="group wat-cf">
+         <div class="left">
+            <%= f.file_field :avatar %>
+         </div>
+
+       </div> 
+       
+       <div class="group wat-cf">
+             <div class="right">
+                <button class="button" type="submit">
+                  <img src="images/icons/key.png" alt="Save" /> Update
+                </button>  
+              </div>
+       </div>   
+     <% end %>  
   </div>
-  
-  <p id="state_field">
-    <label for="user_state_id">State or Province:</label>
-    <%= f.collection_select :state_id, State.find(:all), :id, :State_Name, :prompt => "Select a State" %>
-  </p>
-
-  <p>
-    <%= f.file_field :avatar %>
-  </p>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
+</div>
 
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back %>  
+

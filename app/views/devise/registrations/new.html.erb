@@ -1,35 +1,88 @@
-<h2>Sign up</h2>
+<div class="block" id="block-signup">
+   <h2>Sign Up</h2>
+   <div class="content">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form" , :multipart => true }) do |f| %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true })  do |f| %>
-  <%= devise_error_messages! %>
+        <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :name %></label>
+         </div>
+         <div class="right">
+            <%= f.text_field :name %>
+         </div>
+       </div>  
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
-  
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :email %></label>
+         </div>
+         <div class="right">
+            <%= f.text_field :email %>
+         </div>
+       </div>  
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :password %></label>
+         </div> 
+         <div class="right">
+            <%= f.password_field :password %>
+         </div>
+       </div>    
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-  
-  <div>
-    <%= f.label :country_id %>
-    <%= f.select :country_id, Country.all.collect{ |c| [c.Country_Name, c.id] }, :prompt => "Select a Country" %>
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :password_confirmation %></label>
+         </div> 
+         <div class="right">
+            <%= f.password_field :password_confirmation %>
+         </div>
+       </div>    
+
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :country_id %></label>
+         </div> 
+         <div class="right">
+            <%= f.select :country_id, Country.all.collect{ |c| [c.Country_Name, c.id] }, :prompt => "Select a Country" %>
+         </div>
+       </div>    
+
+       <div class="group wat-cf">
+         <div class="left">
+            <label class="label right"><%= f.label :state_id %></label>
+         </div> 
+         <div class="right">
+            <%= f.select :state_id, State.all.collect{ |s| [s.State_Name, s.id] }, :prompt => "Select a State" %>
+         </div>
+       </div> 
+       
+       <div class="group wat-cf">
+         <div class="left">
+            <%= f.file_field :avatar %>
+         </div>
+       </div> 
+       
+       <div class="group wat-cf">
+             <div class="right">
+                <button class="button" type="submit">
+                  <img src="images/icons/key.png" alt="Save" /> Register
+                </button>  
+              </div>
+       </div>   
+     <% end %>  
   </div>
-  
-  <div>
-     <%= f.label :state_id %>
-    <%= f.select :state_id, State.all.collect{ |s| [s.State_Name, s.id] }, :prompt => "Select a State" %>
-  </div>
+</div>
 
-  <div>
-    <%= f.file_field :avatar %>
-  </div>
+<%= link_to "Sign in",new_user_session_path %></br>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+<%= link_to "Back", home_index_path %>
 
-<%= render :partial => "devise/shared/links" %>
+ 

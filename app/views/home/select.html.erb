@@ -1,42 +1,74 @@
 
-</br>
-Select what you want to do: <%= link_to 'Add a new Client', new_client_path %> |
-<%= link_to 'Add a new Holiday', new_holiday_path %> |
-
-
 <p>Clients</p>
-<table border cellpadding=5>
-  <tr bgcolor=red align=center>
-    <th>Name</th>
-    <th>Email</th>
-    
-    <th></th>
-  </tr>
- 
-<% current_user.clients.each do |client| %>
-  <tr>
-    <td><%= client.name %></td>
-    <td><%= client.email %></td>
-    <td><%= link_to "Edit", edit_client_path(client.id) %> |
-    <%= link_to "Destroy", client_path(client.id), :confirm => "Do you want to delete '#{client.name}'?", :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.client.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+          </th>
+                 <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>    
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% current_user.clients.each do |client| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= client.id %>
+          </td>
+                    <td>
+            <%= link_to client.name, client_path(client) %>
+          </td>
+                    <td>
+            <%= client.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", client_path(client) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_client_path(client) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", client_path(client), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
 
 <p>Holidays</p>
-<table border cellpadding=5>
-  <tr bgcolor=red align=center>
-    <th>Description</th>
-    <th>Date</th>
-    <th></th>
-  </tr>
- 
-<% current_user.holidays.each do |holiday| %>
-  <tr>
-    <td><%= holiday.description %></td>
-    <td><%= holiday.holiday_date %></td>
-    <td><%= link_to "Edit", edit_holiday_path(holiday.id) %> |
-   <%= link_to "Destroy", holiday_path(holiday.id), :confirm => "Do you want to delete '#{holiday.description}'?", :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.holiday.description", :default => t("activerecord.labels.description", :default => "Description")) %>
+          </th>
+                    <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% current_user.holidays.each do |holiday| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= holiday.id %>
+          </td>
+                    <td>
+            <%= link_to holiday.description, holiday_path(holiday) %>
+          </td>
+                    <td>
+            <%= holiday.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", holiday_path(holiday) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_holiday_path(holiday) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", holiday_path(holiday), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+      </div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+
+

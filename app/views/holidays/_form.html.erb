@@ -1,35 +1,27 @@
-<%= form_for [@holiday] do |form| %>
-<% if @holiday.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@holiday.errors.count, "error") %> prohibited this Holiday from being saved:</h2>
 
-      <ul>
-      <% @holiday.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <div class="group">
+    <%= f.label :description, t("activerecord.attributes.holiday.description", :default => "Description"), :class => :label %>
+    <%= f.text_field :description, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
   </div>
 
-  <div class="field">
-    <%= form.label :holiday_date %>
-    <%= form.date_select('holiday_date', :order => [:day, :month, :year]) %>
+  <div class="group">
+    <%= f.label :holiday_date, t("activerecord.attributes.holiday.holiday_date", :default => "Holiday date"), :class => :label %>
+    <%= f.date_select :holiday_date, :class => 'date_select' %>
   </div>
 
-  <div class="field">
-    <%= form.label :country_id %>
-    <%= form.select :country_id, Country.all.collect{ |c| [c.Country_Name, c.id] }, :prompt => "Select a Country" %>
+  <div class="group">
+    <%= f.label :country_id, t("activerecord.attributes.holiday.country_id", :default => "Country"), :class => :label %>
+    <%= f.select :country_id, Country.all.collect{ |c| [c.Country_Name, c.id] }, :prompt => "Select a Country" %>
+    <span class="description">Ex: a simple text</span>
   </div>
-
-  <%= form.hidden_field :user_id, :value => current_user.id %>
-  
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-  
-<% end %>
+        
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+        
+<div class="group navform wat-cf">
+  <button class="button" type="submit">
+    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+  </button>
+  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), holidays_path, :class => "text_button_padding link_button" %>
+</div>

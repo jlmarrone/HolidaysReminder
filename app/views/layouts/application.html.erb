@@ -2,24 +2,56 @@
 <html>
 <head>
   <title>Holidays Reminder</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  
-  <%= csrf_meta_tags %>
-  <%= yield(:head) %>
+  <%= stylesheet_link_tag 'web_app_theme' %>
+  <%= javascript_include_tag :application%>
+  <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="user_nav">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.name %>. Not you? | 
-    <%= link_to "Edit Profile", edit_user_registration_path %> |
-    <%= link_to "Sign out", destroy_user_session_path , :method => :delete %> 
-    <p align=center><%= image_tag current_user.avatar.url(:thumb) %></p>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in",new_user_session_path %>
-  <% end %>
-</div>
-<%= yield %>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/">Holidays Reminder</a></h1>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+          <% if user_signed_in? %>
+            <li style="color: white">Signed in as <%= current_user.name %></li>
+            <li><%= link_to "Index", select_home_path(current_user)%></li>
+            <li><%= link_to "Edit Profile", edit_user_registration_path %> </li>
+            <li><%= link_to "Sign out", destroy_user_session_path , :method => :delete %></li>
+            <li><%= image_tag current_user.avatar.url(:thumb) %></li>
+          <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in",new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="main-navigation">
+        
+        <ul class="wat-cf"></ul>
+        
+      </div>
+    </div>    
+    <div id="wrapper" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <div id="sidebar">
+         <%= yield :sidebar %>
+        </div>
+      <div id="main">
+        <%= yield %>
+        
+        <div id="footer">
+          <div class="block">
+            <p>Copyright &copy; <%= Time.now.year %> Holidays Reminder.</p>
+          </div>      
+        </div>
 
+      </div>
+      
+    </div>    
+  </div>
 </body>
 </html>

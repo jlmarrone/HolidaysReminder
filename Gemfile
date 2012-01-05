@@ -24,6 +24,8 @@ gem 'execjs'
 
 gem 'therubyracer'
 
+gem 'web-app-theme', '~> 0.8.0'
+
 group :test, :development do
  gem 'mysql'
 end

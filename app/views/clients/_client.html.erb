@@ -1,8 +1,34 @@
-<div class="client">
- <p>Name: <%= client.name%> </br>Email: <%= client.email %></br> 
- <%= link_to "Edit", edit_client_path(client.id) %> 
- <%= link_to "Destroy", client_path(client.id), :confirm => "Do you want to delete '#{client.name}'?", :method => :delete %>
- </p>
 
-</div>
+<div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.client.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+          </th>
+                    
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% current_user.clients.each do |client| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= client.id %>
+          </td>
+                    <td>
+            <%= link_to client.name, client_path(client) %>
+          </td>
+                   
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", client_path(client) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_client_path(client) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", client_path(client), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+
+
 
