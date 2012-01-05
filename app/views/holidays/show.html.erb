@@ -1,0 +1,34 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", holidays_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_holiday_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", holiday_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.holiday.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b>
+          <%= @holiday.description %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.holiday.holiday_date", :default => t("activerecord.labels.holiday_date", :default => "Holiday date")) %>:</b>
+          <%= @holiday.holiday_date %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.holiday.country_id", :default => t("activerecord.labels.country_id", :default => "Country")) %>:</b>
+          <%= @holiday.country.Country_Name %>
+        </p>
+
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_holiday_path(@holiday), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), holiday_path(@holiday), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+

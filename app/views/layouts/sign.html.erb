@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Holidays Reminder</title>
+  <%= stylesheet_link_tag "web_app_theme" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+     <div id="header">
+      <h1><a href="/">Holidays Reminder</a></h1>
+       <div id="user-navigation">
+        <ul class="wat-cf">
+          <% if user_signed_in? %>
+            <li style="color: white">Signed in as <%= current_user.name %></li>
+            <li><%= link_to "Index", select_home_path(current_user)%></li>            
+            <li><%= image_tag current_user.avatar.url(:thumb) %></li>
+          <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in",new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+     </div> 
+    <div id="box">
+      <%= yield %>            
+    </div>
+  </div>
+</body>
+</html>
