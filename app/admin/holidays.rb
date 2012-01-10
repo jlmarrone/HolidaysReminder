@@ -3,6 +3,7 @@ ActiveAdmin.register Holiday do
   filter :description
   filter :holiday_date
   filter :country, :as => :select , :label_method => :Country_Name
+  filter :user, :as => :select, :label_method => :name
 
   index do
     id_column

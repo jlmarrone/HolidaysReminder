@@ -3,6 +3,7 @@ ActiveAdmin.register User do
   filter :name
   filter :email
   filter :country, :as => :select , :label_method => :Country_Name
+  filter :state, :as => :select, :label_method => :State_Name
 
   index do
     id_column
