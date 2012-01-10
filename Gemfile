@@ -12,7 +12,7 @@ gem 'formtastic','~>1.2.0'
 
 gem "mail", "2.3.0"
 
-gem 'inherited_resources'
+gem 'inherited_resources', '1.2.2'
 
 gem 'devise'
 
@@ -25,6 +25,10 @@ gem 'execjs'
 gem 'therubyracer'
 
 gem 'web-app-theme', '~> 0.8.0'
+
+gem 'activeadmin'
+  
+gem "meta_search",    '>= 1.1.0.pre'
 
 group :test, :development do
  gem 'mysql'
