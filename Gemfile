@@ -26,7 +26,7 @@ gem 'therubyracer'
 
 gem 'web-app-theme', '~> 0.8.0'
 
-gem 'activeadmin'
+
   
 gem "meta_search",    '>= 1.1.0.pre'
 
@@ -45,6 +45,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'activeadmin'
 
 gem 'jquery-rails'
 
